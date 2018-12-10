@@ -13,15 +13,6 @@ import (
 )
 
 func main() {
-	//set stripe
-	os.Setenv("PUBLISHABLE_KEY", "pk_test_8Vv4aXaLuLJhZswdfseKy6pB")
-	os.Setenv("SECRET_KEY", "sk_test_qMRe97Kmei7htAgkWgDrXIKG")
-	os.Setenv("PLAN_ID", "plan_D2bdU5gqGaE3Pc")
-	//adstation api
-	os.Getenv("SENDGRID_API_KEY")
-
-	//os.Setenv("SENDGRID_API_KEY", "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")
-	//os.Setenv("PLAN_ID", "prod_D2XtC9eTJS6j3F")
 
 	e := echo.New()
 
@@ -63,6 +54,7 @@ func main() {
 	e.POST("/auth/login", h.Login)
 	e.POST("/auth/reset", h.PassReset)
 
+	//authentication group Routes
 	g := e.Group("/api")
 	g.Use(middleware.JWTWithConfig(middleware.JWTConfig{
 		SigningMethod: "HS256",
