@@ -1,0 +1,19 @@
+runtime: go
+env: flex
+api_version: 1
+
+default_expiration: "1d"        # for CDN serving of static files (use url versioning if long!)
+
+skip_files:
+- README.md
+
+handlers:
+# finally, we route all other requests to our application. The script name just means "the go app"
+- url: /.*
+  script: _go_app
+
+env_variables:
+  MONGO_URL: 'mongodb://adstation_user:con4WGV7HYRyeaA5@ds227171.mlab.com:27171/adspy'
+  #MONGO_URL: 'mongodb://localhost:27017/adspy'
+  SENDGRID_API_KEY: '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'
+  
